@@ -4,7 +4,7 @@ import article from "data/article.json";
 function App() {
   return (
     <>
-      <BlogCard article={article} />
+      <BlogCard {...article} />
     </>
   );
 }
