@@ -1,3 +1,4 @@
+import css from "./BlogCard.module.css";
 export const BlogCard = ({
   tag,
   poster,
@@ -8,7 +9,7 @@ export const BlogCard = ({
   postedAt,
 }) => {
   return (
-    <div>
+    <div className={css.card}>
       <img src={poster} alt={tag} />
       <div>
         <span>{tag}</span>
