@@ -1,10 +1,11 @@
-import { StatisticsItem } from "../StatisticsItem/StatisticsItem";
+import {StatisticsItem} from "../StatisticsItem/StatisticsItem";
+import css from "./Statistics.module.css";
 
-export const Statistics = ({ stats }) => {
+export const Statistics = ({stats}) => {
   return (
-    <ul>
-      {stats.map(({ id, title, total }) => (
-        <li key={id}>
+    <ul className={css.list}>
+      {stats.map(({id, title, total}) => (
+        <li className={css.item} key={id}>
           <StatisticsItem title={title} total={total} />
         </li>
       ))}
