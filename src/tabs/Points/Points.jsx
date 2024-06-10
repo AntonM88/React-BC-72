@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Options, Feadback, Heading } from "components";
 
 export const Points = () => {
   const [points, setPoints] = useState({
@@ -17,27 +18,30 @@ export const Points = () => {
     });
   };
 
+  const handleReset = () => {
+    setPoints({
+      one: 0,
+      two: 0,
+      three: 0,
+      four: 0,
+      five: 0,
+    });
+  };
+
   const total = Object.values(points).reduce((acc, value) => acc + value, 0);
 
   return (
     <div>
-      {Object.keys(points).map((item, index) => (
-        <button onClick={() => handleClick(item, index + 1)} key={item}>
-          {item}
-        </button>
-      ))}
+      <Options
+        handleReset={handleReset}
+        handleClick={handleClick}
+        total={total}
+        options={Object.keys(points)}
+      />
       {total ? (
-        <ul>
-          {Object.entries(points).map(([key, value]) => (
-            <li key={key}>
-              <p>
-                {key}: {value}
-              </p>
-            </li>
-          ))}
-        </ul>
+        <Feadback points={Object.entries(points)} />
       ) : (
-        <p>No Points</p>
+        <Heading title="No points" top />
       )}
     </div>
   );
