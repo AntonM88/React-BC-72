@@ -1,0 +1,31 @@
+.list {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.optionsBtn {
+  padding: 10px;
+  border-radius: 10px;
+}
+.reset {
+  background-color: red;
+  composes: optionsBtn;
+}
+.one {
+  background-color: blue;
+}
+.two {
+  background-color: aqua;
+}
+.three {
+  background-color: lightgray;
+}
+.four {
+  background-color: lightseagreen;
+}
+.five {
+  background-color: lightpink;
+}

@@ -1,8 +1,9 @@
+import s from "./Feedback.module.css";
 export const Feadback = ({ points }) => {
   return (
-    <ul>
+    <ul className={s.list}>
       {points.map(([key, value]) => (
-        <li key={key}>
+        <li className={s.item} key={key}>
           <p>
             {key}: {value}
           </p>
