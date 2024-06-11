@@ -34,7 +34,7 @@ export const Points = () => {
         options={Object.keys(points)}
       />
       {total ? (
-        <Feadback points={Object.entries(points)} />
+        <Feadback points={[...Object.entries(points), ["total", total]]} />
       ) : (
         <Heading title="No points" top />
       )}
