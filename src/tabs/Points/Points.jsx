@@ -1,17 +1,18 @@
-import { useState } from "react";
 import { Options, Feadback, Heading } from "components";
+import { useLocalStorage } from "hooks/useLocalStorage";
+
+const initialState = {
+  one: 0,
+  two: 0,
+  three: 0,
+  four: 0,
+  five: 0,
+};
 
 export const Points = () => {
-  const [points, setPoints] = useState({
-    one: 0,
-    two: 0,
-    three: 0,
-    four: 0,
-    five: 0,
-  });
+  const [points, setPoints] = useLocalStorage("points", initialState);
 
   const handleClick = (point, value) => {
-    console.log(point);
     setPoints({
       ...points,
       [point]: points[point] + value,
@@ -19,13 +20,7 @@ export const Points = () => {
   };
 
   const handleReset = () => {
-    setPoints({
-      one: 0,
-      two: 0,
-      three: 0,
-      four: 0,
-      five: 0,
-    });
+    setPoints(initialState);
   };
 
   const total = Object.values(points).reduce((acc, value) => acc + value, 0);
