@@ -8,6 +8,10 @@ export const TodoForm = ({ createTodo }) => {
   const submitForm = (e) => {
     e.preventDefault();
 
+    if (!text) {
+      alert("Enter Text");
+      return;
+    }
     createTodo(text);
 
     setText("");
