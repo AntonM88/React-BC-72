@@ -7,3 +7,4 @@ export * from "./Options/Options";
 export * from "./Feadback/Feadback";
 export * from "./TodoForm/TodoForm";
 export * from "./TodoList/TodoList";
+export * from "./Filter/Filter";
