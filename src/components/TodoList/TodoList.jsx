@@ -1,6 +1,6 @@
 import { formatDateToNow } from "helpers/formatDate";
 
-export const TodoList = ({ todos, handleDelete }) => {
+export const TodoList = ({ todos, handleDelete, changeTodo }) => {
   return (
     <ul>
       {todos.map((todo, index) => (
@@ -10,6 +10,7 @@ export const TodoList = ({ todos, handleDelete }) => {
           </p>
           <span>was created {formatDateToNow(todo.createAt)}</span>
           <button onClick={() => handleDelete(todo.id)}>Delete</button>
+          <button onClick={() => changeTodo(todo)}>Change</button>
         </li>
       ))}
     </ul>
