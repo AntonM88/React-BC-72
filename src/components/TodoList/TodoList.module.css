@@ -1,0 +1,19 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.item {
+  width: 200px;
+  padding: 5px;
+  border: 1px solid blueviolet;
+}
+
+.btn_del {
+  margin-right: 15px;
+  background-color: red;
+}
+.btn_change {
+  background-color: rgb(87, 87, 216);
+}

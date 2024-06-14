@@ -1,31 +1,35 @@
-import { useState } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import s from "./TodoForm.module.css";
+
+const initialValues = { text: "" };
+
+const validationSchema = Yup.object().shape({
+  text: Yup.string()
+    .min(3, "To short text")
+    .max(15, "To long text")
+    .required("Enter Text"),
+});
 
 export const TodoForm = ({ createTodo }) => {
-  const [text, setText] = useState("");
-  const handleChange = (e) => {
-    setText(e.target.value);
-  };
-  const submitForm = (e) => {
-    e.preventDefault();
-
-    if (!text) {
-      alert("Enter Text");
-      return;
-    }
-    createTodo(text);
-
-    setText("");
+  const submitForm = (value, actions) => {
+    createTodo(value.text);
+    actions.resetForm();
   };
 
   return (
-    <form onSubmit={submitForm}>
-      <input
-        type="text"
-        placeholder="Enter your ToDo"
-        value={text}
-        onChange={handleChange}
-      />
-      <button type="submit">Create ToDo</button>
-    </form>
+    <div className={s.form_box}>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={submitForm}
+        validationSchema={validationSchema}
+      >
+        <Form>
+          <Field type="text" name="text" placeholder="Enter your ToDo" />
+          <ErrorMessage className={s.error} name="text" component="span" />
+          <button type="submit">Create ToDo</button>
+        </Form>
+      </Formik>
+    </div>
   );
 };

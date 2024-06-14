@@ -2,7 +2,7 @@ import { TodoForm, TodoList, Filter } from "components";
 import { nanoid } from "nanoid";
 import { useLocalStorage } from "hooks/useLocalStorage";
 import { useState } from "react";
-import { ChangeFormTodo } from "../../components";
+import { ChangeFormTodo, Heading } from "../../components";
 
 export const Todos = () => {
   const [todos, setTodos] = useLocalStorage("todos", []);
@@ -55,12 +55,19 @@ export const Todos = () => {
       ) : (
         <TodoForm createTodo={createTodo} />
       )}
-      <Filter handleFilter={handleFilter} />
-      <TodoList
-        todos={filteredTodos}
-        handleDelete={handleDelete}
-        changeTodo={changeTodo}
-      />
+      {todos.length > 0 && <Filter handleFilter={handleFilter} />}
+      {todos.length ? (
+        <TodoList
+          todos={filteredTodos}
+          handleDelete={handleDelete}
+          changeTodo={changeTodo}
+        />
+      ) : (
+        <Heading title={"All todo completed!"} />
+      )}
+      {filteredTodos.length === 0 && todos.length !== 0 && (
+        <Heading title={`Not find todo width ${filter}`} />
+      )}
     </div>
   );
 };
