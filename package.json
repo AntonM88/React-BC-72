@@ -16,6 +16,7 @@
     "formik": "^2.4.6",
     "modern-normalize": "^2.0.0",
     "nanoid": "^5.0.7",
+    "pexels": "^1.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-tabs": "^6.0.2",

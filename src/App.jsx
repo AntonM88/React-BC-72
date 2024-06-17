@@ -1,18 +1,22 @@
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 
-import { Todos, Points, Props } from "tabs";
+import { Todos, Points, Props, Photos } from "tabs";
 
 function App() {
   return (
     <>
       <Tabs>
         <TabList>
+          <Tab>Photos</Tab>
           <Tab>Todos</Tab>
           <Tab>Points</Tab>
           <Tab>Props</Tab>
         </TabList>
 
+        <TabPanel>
+          <Photos />
+        </TabPanel>
         <TabPanel>
           <Todos />
         </TabPanel>
