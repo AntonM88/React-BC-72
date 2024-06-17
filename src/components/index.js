@@ -9,3 +9,4 @@ export * from "./TodoForm/TodoForm";
 export * from "./TodoList/TodoList";
 export * from "./Filter/Filter";
 export * from "./ChangeFormTodo/ChangeFormTodo";
+export * from "./PhotosForm/PhotosForm";
