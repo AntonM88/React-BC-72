@@ -8,6 +8,7 @@ import {
   Section,
   LoadMore,
   Loader,
+  ImageModal,
 } from "components";
 
 export const Photos = () => {
@@ -18,6 +19,8 @@ export const Photos = () => {
   const [isEmpty, setIsEmpty] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [selectImg, setSelectImg] = useState(null);
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   useEffect(() => {
     if (!query) return;
@@ -54,18 +57,34 @@ export const Photos = () => {
   const handleLoadMore = () => {
     setPage((prev) => prev + 1);
   };
+  const handleModalOpen = (img) => {
+    setIsOpenModal(true);
+    setSelectImg(img);
+  };
+  const closeModal = () => {
+    setIsOpenModal(false);
+    setSelectImg(null);
+  };
 
   return (
     <Section>
       <Container>
         <PhotosForm onSubmit={onSubmit} />
-        {photos.length > 0 && <PhotosList photos={photos} />}
+        {photos.length > 0 && (
+          <PhotosList photos={photos} handleModalOpen={handleModalOpen} />
+        )}
         {showLoadMore && <LoadMore onClick={handleLoadMore} />}
         {isEmpty && (
           <Heading title={`We did not found photos with the word ${query} `} />
         )}
         {isLoading && <Loader />}
         {error && <Heading title={`Something went wrong ${error}`} />}
+
+        <ImageModal
+          modalIsOpen={isOpenModal}
+          closeModal={closeModal}
+          selectImg={selectImg}
+        />
       </Container>
     </Section>
   );
