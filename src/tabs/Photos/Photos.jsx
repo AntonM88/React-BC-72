@@ -1,21 +1,44 @@
-import {useEffect, useState} from "react";
-import {PhotosForm} from "components";
-import {searchPhotos} from "service/photosApi";
-import {Container, PhotosList, Section} from "../../components";
-import {LoadMore} from "../../components/LoadMore/LoadMore";
+import { useEffect, useState } from "react";
+import { PhotosForm } from "components";
+import { searchPhotos } from "service/photosApi";
+import {
+  Container,
+  Heading,
+  PhotosList,
+  Section,
+  LoadMore,
+  Loader,
+} from "components";
 
 export const Photos = () => {
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
   const [photos, setPhotos] = useState([]);
   const [showLoadMore, setShowLoadMore] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     if (!query) return;
     const getData = async () => {
-      const {photos, total_results, per_page} = await searchPhotos(query, page);
-      setPhotos((prev) => [...prev, ...photos]);
-      setShowLoadMore(page < Math.ceil(total_results / per_page));
+      try {
+        setIsLoading(true);
+        const { photos, total_results, per_page } = await searchPhotos(
+          query,
+          page
+        );
+        if (!total_results) {
+          setIsEmpty(true);
+          return;
+        }
+        setPhotos((prev) => [...prev, ...photos]);
+        setShowLoadMore(page < Math.ceil(total_results / per_page));
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setIsLoading(false);
+      }
     };
     getData();
   }, [query, page]);
@@ -25,6 +48,7 @@ export const Photos = () => {
     setPhotos([]);
     setPage(1);
     setShowLoadMore(false);
+    setIsEmpty(false);
   };
 
   const handleLoadMore = () => {
@@ -37,6 +61,11 @@ export const Photos = () => {
         <PhotosForm onSubmit={onSubmit} />
         {photos.length > 0 && <PhotosList photos={photos} />}
         {showLoadMore && <LoadMore onClick={handleLoadMore} />}
+        {isEmpty && (
+          <Heading title={`We did not found photos with the word ${query} `} />
+        )}
+        {isLoading && <Loader />}
+        {error && <Heading title={`Something went wrong ${error}`} />}
       </Container>
     </Section>
   );

@@ -11,3 +11,5 @@ export * from "./Filter/Filter";
 export * from "./ChangeFormTodo/ChangeFormTodo";
 export * from "./PhotosForm/PhotosForm";
 export * from "./PhotosList/PhotosList";
+export * from "./Loader/Loader";
+export * from "./LoadMore/LoadMore";
