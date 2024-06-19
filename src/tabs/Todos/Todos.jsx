@@ -42,8 +42,6 @@ export const Todos = () => {
     todo.text.toLowerCase().includes(filter.toLowerCase())
   );
 
-  console.log(currentTodo);
-
   return (
     <div>
       {currentTodo ? (

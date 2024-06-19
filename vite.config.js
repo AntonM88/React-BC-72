@@ -12,6 +12,7 @@ export default defineConfig({
       tabs: "/src/tabs",
       hooks: "/src/hooks",
       service: "/src/service",
+      themeContext: "/src/themeContext",
     },
   },
 });

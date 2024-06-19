@@ -27,7 +27,9 @@ export const PhotosForm = ({ onSubmit }) => {
         <Form>
           <Field type="text" name="text" placeholder="Enter your ToDo" />
           <ErrorMessage className={s.error} name="text" component="span" />
-          <button type="submit">Search photos</button>
+          <button type="submit" className={s.btn}>
+            Search photos
+          </button>
         </Form>
       </Formik>
     </div>
