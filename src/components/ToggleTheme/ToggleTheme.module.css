@@ -1,0 +1,14 @@
+.box {
+  position: absolute;
+  right: 5px;
+}
+.night {
+  width: 26px;
+  height: 26px;
+  color: fuchsia;
+}
+.light {
+  width: 26px;
+  height: 26px;
+  color: #f1cc17;
+}
