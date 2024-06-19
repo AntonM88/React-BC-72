@@ -2,10 +2,12 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 
 import { Todos, Points, Props, Photos } from "tabs";
+import { ToggleTheme } from "./components";
 
 function App() {
   return (
     <>
+      <ToggleTheme/>
       <Tabs>
         <TabList>
           <Tab>Photos</Tab>

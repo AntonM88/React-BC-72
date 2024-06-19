@@ -14,3 +14,4 @@ export * from "./PhotosList/PhotosList";
 export * from "./Loader/Loader";
 export * from "./LoadMore/LoadMore";
 export * from "./ImageModal/ImageModal";
+export * from "./ToggleTheme/ToggleTheme";

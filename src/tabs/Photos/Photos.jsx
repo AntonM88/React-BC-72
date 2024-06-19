@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { PhotosForm } from "components";
 import { searchPhotos } from "service/photosApi";
 import {
@@ -10,7 +10,7 @@ import {
   Loader,
   ImageModal,
 } from "components";
-import { ThemeContext } from "themeContext/themeContext";
+
 
 export const Photos = () => {
   const [query, setQuery] = useState("");
@@ -22,7 +22,7 @@ export const Photos = () => {
   const [error, setError] = useState(false);
   const [selectImg, setSelectImg] = useState(null);
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const { toggleTheme } = useContext(ThemeContext);
+ 
 
   useEffect(() => {
     if (!query) return;
@@ -71,7 +71,7 @@ export const Photos = () => {
   return (
     <Section>
       <Container>
-        <button onClick={toggleTheme}>Change theme</button>
+       
         <PhotosForm onSubmit={onSubmit} />
         {photos.length > 0 && (
           <PhotosList photos={photos} handleModalOpen={handleModalOpen} />
