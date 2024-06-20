@@ -1,34 +1,19 @@
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import "react-tabs/style/react-tabs.css";
-
-import { Todos, Points, Props, Photos } from "tabs";
-import { ToggleTheme } from "./components";
+import { Routes, Route } from "react-router-dom";
+import { Todos, Points, Props, Photos, Home } from "pages";
+import { Navigation } from "./components";
 
 function App() {
   return (
     <>
-      <ToggleTheme/>
-      <Tabs>
-        <TabList>
-          <Tab>Photos</Tab>
-          <Tab>Todos</Tab>
-          <Tab>Points</Tab>
-          <Tab>Props</Tab>
-        </TabList>
+      <Navigation />
 
-        <TabPanel>
-          <Photos />
-        </TabPanel>
-        <TabPanel>
-          <Todos />
-        </TabPanel>
-        <TabPanel>
-          <Points />
-        </TabPanel>
-        <TabPanel>
-          <Props />
-        </TabPanel>
-      </Tabs>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/photos" element={<Photos />} />
+        <Route path="/todos" element={<Todos />} />
+        <Route path="/points" element={<Points />} />
+        <Route path="/props" element={<Props />} />
+      </Routes>
     </>
   );
 }

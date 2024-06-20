@@ -9,7 +9,7 @@ export default defineConfig({
       components: "/src/components",
       data: "/src/data",
       helpers: "/src/helpers",
-      tabs: "/src/tabs",
+      pages: "/src/pages",
       hooks: "/src/hooks",
       service: "/src/service",
       themeContext: "/src/themeContext",
