@@ -4,11 +4,14 @@ import App from "./App.jsx";
 import "modern-normalize/modern-normalize.css";
 import "./index.css";
 import { ThemeProvider } from "./themeContext/themeContext.jsx";
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ThemeProvider>
-      <App />
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
