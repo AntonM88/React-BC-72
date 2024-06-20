@@ -37,6 +37,11 @@ export const Navigation = () => {
               Props
             </NavLink>
           </li>
+          <li>
+            <NavLink to="/countries" className={buildLinkClass}>
+              Countries
+            </NavLink>
+          </li>
         </ul>
       </nav>
 

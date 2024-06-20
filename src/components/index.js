@@ -16,3 +16,4 @@ export * from "./LoadMore/LoadMore";
 export * from "./ImageModal/ImageModal";
 export * from "./ToggleTheme/ToggleTheme";
 export * from "./Navigation/Navigation";
+export * from "./CountriesList/CountriesList.jsx";
