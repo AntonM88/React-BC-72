@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { Todos, Points, Props, Photos, Home, Countries } from "pages";
 import { Navigation } from "./components";
+import { CountryInfo } from "./pages";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/points" element={<Points />} />
         <Route path="/props" element={<Props />} />
         <Route path="/countries" element={<Countries />} />
+        <Route path="/countries/:countryId" element={<CountryInfo />} />
       </Routes>
     </>
   );

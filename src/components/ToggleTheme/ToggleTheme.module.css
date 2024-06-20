@@ -1,6 +1,7 @@
 .box {
   position: absolute;
   right: 5px;
+  top: 15px;
 }
 .night {
   width: 26px;
