@@ -7,6 +7,7 @@ export const SearchCountry = () => {
   const onSubmit = (region) => {
     setSearchParams({ region });
   };
+
   return (
     <Section>
       <Container>
