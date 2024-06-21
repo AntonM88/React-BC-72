@@ -42,6 +42,11 @@ export const Navigation = () => {
               Countries
             </NavLink>
           </li>
+          <li>
+            <NavLink to="/searchCountries" className={buildLinkClass}>
+              Search countries
+            </NavLink>
+          </li>
         </ul>
       </nav>
 
