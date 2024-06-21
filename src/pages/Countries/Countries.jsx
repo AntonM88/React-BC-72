@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getCountries } from "service/countriesApi";
 import { Section, Container, CountriesList, Loader, Heading } from "components";
 
-export const Countries = () => {
+const Countries = () => {
   const [countries, setCountries] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -31,3 +31,5 @@ export const Countries = () => {
     </Section>
   );
 };
+
+export default Countries;

@@ -9,7 +9,7 @@ const initialState = {
   five: 0,
 };
 
-export const Points = () => {
+const Points = () => {
   const [points, setPoints] = useLocalStorage("points", initialState);
 
   const handleClick = (point, value) => {
@@ -41,3 +41,5 @@ export const Points = () => {
     </div>
   );
 };
+
+export default Points;

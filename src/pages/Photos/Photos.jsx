@@ -11,8 +11,7 @@ import {
   ImageModal,
 } from "components";
 
-
-export const Photos = () => {
+const Photos = () => {
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
   const [photos, setPhotos] = useState([]);
@@ -22,7 +21,6 @@ export const Photos = () => {
   const [error, setError] = useState(false);
   const [selectImg, setSelectImg] = useState(null);
   const [isOpenModal, setIsOpenModal] = useState(false);
- 
 
   useEffect(() => {
     if (!query) return;
@@ -71,7 +69,6 @@ export const Photos = () => {
   return (
     <Section>
       <Container>
-       
         <PhotosForm onSubmit={onSubmit} />
         {photos.length > 0 && (
           <PhotosList photos={photos} handleModalOpen={handleModalOpen} />
@@ -92,3 +89,5 @@ export const Photos = () => {
     </Section>
   );
 };
+
+export default Photos;
