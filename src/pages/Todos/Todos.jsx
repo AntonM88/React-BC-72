@@ -4,7 +4,7 @@ import { useLocalStorage } from "hooks/useLocalStorage";
 import { useState } from "react";
 import { ChangeFormTodo, Heading } from "../../components";
 
-export const Todos = () => {
+const Todos = () => {
   const [todos, setTodos] = useLocalStorage("todos", []);
   const [filter, setFilter] = useState("");
   const [currentTodo, setCurrentTodo] = useState(null);
@@ -69,3 +69,5 @@ export const Todos = () => {
     </div>
   );
 };
+
+export default Todos;

@@ -15,3 +15,8 @@ export const fetchCountry = async (id) => {
   const { data } = await instance.get(`/name/${id}`);
   return transformCountryData(data[0]);
 };
+
+export const getCountriesByRegion = async (region) => {
+  const { data } = await instance.get(`/region/${region}`);
+  return transformCountries(data);
+};

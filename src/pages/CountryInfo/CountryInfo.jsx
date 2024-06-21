@@ -1,11 +1,18 @@
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { fetchCountry } from "service/countriesApi";
-import { useEffect, useState } from "react";
-import { Container, CountryDetails, Section } from "components";
-import { Heading, Loader } from "components";
+import { useEffect, useRef, useState } from "react";
+import {
+  Container,
+  CountryDetails,
+  Section,
+  GoBackBtn,
+  Heading,
+  Loader,
+} from "components";
 
-export const CountryInfo = () => {
+const CountryInfo = () => {
   const { countryId } = useParams();
+  const location = useLocation();
 
   const [country, setCountry] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -26,9 +33,12 @@ export const CountryInfo = () => {
     fetchData();
   }, [countryId]);
 
+  const goBack = useRef(location.state || "/countries");
+
   return (
     <Section>
       <Container>
+        <GoBackBtn path={goBack.current} />
         {country && <CountryDetails {...country} />}
         {isLoading && <Loader />}
         {error && <Heading title={`Something went wrong ${error}`} />}
@@ -36,3 +46,5 @@ export const CountryInfo = () => {
     </Section>
   );
 };
+
+export default CountryInfo;
