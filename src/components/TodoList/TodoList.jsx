@@ -1,7 +1,10 @@
 import { formatDateToNow } from "helpers/formatDate";
 import s from "./TodoList.module.css";
+import { useSelector } from "react-redux";
 
-export const TodoList = ({ todos, handleDelete, changeTodo }) => {
+export const TodoList = ({ handleDelete, changeTodo }) => {
+  const todos = useSelector((state) => state);
+  console.log(todos);
   return (
     <ul className={s.list}>
       {todos.map((todo, index) => (

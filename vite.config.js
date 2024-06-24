@@ -13,6 +13,7 @@ export default defineConfig({
       hooks: "/src/hooks",
       service: "/src/service",
       themeContext: "/src/themeContext",
+      reduxStore: "/src/reduxStore",
     },
   },
 });
