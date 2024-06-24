@@ -1,9 +1,13 @@
-export const ChangeFormTodo = ({ currentTodo, changeTodo, updateTodo }) => {
+import { useDispatch, useSelector } from "react-redux";
+import { changeTodo, setCurrentTodo } from "reduxStore/actions";
+
+export const ChangeFormTodo = () => {
+  const dispatch = useDispatch();
+  const currentTodo = useSelector((state) => state.todos.currentTodo);
   const handleSubmit = (event) => {
     event.preventDefault();
     const { value } = event.target.elements.todoUpdate;
-    updateTodo(value);
-    changeTodo(null);
+    dispatch(changeTodo(value));
   };
 
   return (
@@ -13,7 +17,7 @@ export const ChangeFormTodo = ({ currentTodo, changeTodo, updateTodo }) => {
         <button type="submit">Change</button>
       </form>
 
-      <button onClick={() => changeTodo(null)}>Cancel</button>
+      <button onClick={() => dispatch(setCurrentTodo(null))}>Cancel</button>
     </>
   );
 };

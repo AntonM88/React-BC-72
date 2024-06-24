@@ -1,42 +1,16 @@
 import { TodoForm, TodoList, Filter } from "components";
-import { nanoid } from "nanoid";
-import { useLocalStorage } from "hooks/useLocalStorage";
-import { useState } from "react";
-import { ChangeFormTodo, Heading } from "../../components";
+import { ChangeFormTodo, Heading } from "components";
+import { useSelector } from "react-redux";
+import {
+  selectCurrentTodo,
+  selectFilter,
+  selectTodos,
+} from "reduxStore/selectors";
 
 const Todos = () => {
-  const [todos, setTodos] = useLocalStorage("todos", []);
-  const [filter, setFilter] = useState("");
-  const [currentTodo, setCurrentTodo] = useState(null);
-
-  const createTodo = (text) => {
-    const todoObj = {
-      id: nanoid(),
-      text,
-      createAt: Date.now(),
-    };
-    setTodos((prevState) => [...prevState, todoObj]);
-  };
-
-  const changeTodo = (todo) => {
-    setCurrentTodo(todo);
-  };
-
-  const updateTodo = (text) => {
-    setTodos((prevState) =>
-      prevState.map((todo) =>
-        todo.id === currentTodo.id ? { ...todo, text } : todo
-      )
-    );
-  };
-
-  const handleDelete = (id) => {
-    setTodos((prevState) => prevState.filter((todo) => todo.id !== id));
-  };
-
-  const handleFilter = (e) => {
-    setFilter(e.target.value);
-  };
+  const currentTodo = useSelector(selectCurrentTodo);
+  const todos = useSelector(selectTodos);
+  const filter = useSelector(selectFilter);
 
   const filteredTodos = todos.filter((todo) =>
     todo.text.toLowerCase().includes(filter.toLowerCase())
@@ -45,21 +19,13 @@ const Todos = () => {
   return (
     <div>
       {currentTodo ? (
-        <ChangeFormTodo
-          currentTodo={currentTodo}
-          changeTodo={changeTodo}
-          updateTodo={updateTodo}
-        />
+        <ChangeFormTodo currentTodo={currentTodo} />
       ) : (
-        <TodoForm createTodo={createTodo} />
+        <TodoForm />
       )}
-      {todos.length > 0 && <Filter handleFilter={handleFilter} />}
+      {todos.length > 0 && <Filter />}
       {todos.length ? (
-        <TodoList
-          todos={filteredTodos}
-          handleDelete={handleDelete}
-          changeTodo={changeTodo}
-        />
+        <TodoList todos={filteredTodos} />
       ) : (
         <Heading title={"All todo completed!"} />
       )}

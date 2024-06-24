@@ -1,13 +1,29 @@
-import {combineReducers} from "redux";
-
-const toDoReducer = (state = [], action) => {
+import { combineReducers } from "redux";
+const initialStateTodos = {
+  items: [],
+  currentTodo: null,
+};
+const toDoReducer = (state = initialStateTodos, action) => {
   switch (action.type) {
     case "toDo/addToDo":
-      return [...state, action.payload];
+      return { ...state, items: [...state.items, action.payload] };
 
     case "toDo/deleteToDo":
-      return state.filter((toDo) => toDo.id !== action.payload);
-
+      return {
+        ...state,
+        items: state.items.filter((toDo) => toDo.id !== action.payload),
+      };
+    case "todo/changeTodo":
+      return {
+        items: state.items.map((todo) =>
+          todo.id === state.currentTodo.id
+            ? { ...todo, text: action.payload }
+            : todo
+        ),
+        currentTodo: null,
+      };
+    case "todo/setCurrentTodo":
+      return { ...state, currentTodo: action.payload };
     default:
       return state;
   }
@@ -23,4 +39,7 @@ const filterReducer = (state = "", action) => {
   }
 };
 
-export const rootReducer = combineReducers({todos: toDoReducer, filter: filterReducer});
+export const rootReducer = combineReducers({
+  todos: toDoReducer,
+  filter: filterReducer,
+});
