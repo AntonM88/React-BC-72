@@ -3,7 +3,7 @@ import s from "./TodoList.module.css";
 import {useDispatch, useSelector} from "react-redux";
 import {deleteToDo} from "reduxStore/actions";
 
-export const TodoList = ({handleDelete, changeTodo}) => {
+export const TodoList = ({changeTodo}) => {
   const todos = useSelector((state) => state.todos);
   const filter = useSelector((state) => state.filter);
   const dispatch = useDispatch();
