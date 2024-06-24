@@ -18,3 +18,15 @@ export const deleteToDo = (id) => {
     type: "toDo/deleteToDo",
   };
 };
+export const changeTodo = (text) => {
+  return {
+    payload: text,
+    type: "todo/changeTodo",
+  };
+};
+export const setCurrentTodo = (todo) => {
+  return {
+    payload: todo,
+    type: "todo/setCurrentTodo",
+  };
+};
