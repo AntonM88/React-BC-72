@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { changeTodo, setCurrentTodo } from "reduxStore/actions";
+import { updateTodo, setCurrentTodo } from "reduxStore/todoSlice";
 
 export const ChangeFormTodo = () => {
   const dispatch = useDispatch();
@@ -7,7 +7,7 @@ export const ChangeFormTodo = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const { value } = event.target.elements.todoUpdate;
-    dispatch(changeTodo(value));
+    dispatch(updateTodo(value));
   };
 
   return (
