@@ -4,6 +4,7 @@ import s from "./TodoForm.module.css";
 import { nanoid } from "nanoid/non-secure";
 import { useDispatch } from "react-redux";
 import { addTodo } from "reduxStore/todoSlice";
+import { act } from "react";
 
 const initialValues = { text: "" };
 
@@ -18,7 +19,13 @@ export const TodoForm = () => {
   const dispatch = useDispatch();
 
   const submitForm = (value, actions) => {
-    dispatch(addTodo({ text: value.text, id: nanoid(), createAt: Date.now() }));
+    const action = addTodo({
+      text: value.text,
+      id: nanoid(),
+      createAt: Date.now(),
+    });
+
+    dispatch(action);
 
     actions.resetForm();
   };

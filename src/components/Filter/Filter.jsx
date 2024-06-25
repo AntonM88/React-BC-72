@@ -1,13 +1,16 @@
-import {useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import s from "./Filter.module.css";
-import {setFilter} from "reduxStore/actions";
+import { setFilter } from "reduxStore/filterSlice";
 
 export const Filter = () => {
   const dispatch = useDispatch();
   return (
     <div className={s.filter}>
       Find Todo
-      <input type="text" onChange={(event) => dispatch(setFilter(event.target.value))} />
+      <input
+        type="text"
+        onChange={(event) => dispatch(setFilter(event.target.value))}
+      />
     </div>
   );
 };
