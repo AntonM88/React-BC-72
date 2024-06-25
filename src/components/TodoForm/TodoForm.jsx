@@ -1,9 +1,9 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import s from "./TodoForm.module.css";
-import { addToDo } from "../../reduxStore/actions";
 import { nanoid } from "nanoid/non-secure";
 import { useDispatch } from "react-redux";
+import { addTodo } from "reduxStore/todoSlice";
 
 const initialValues = { text: "" };
 
@@ -14,13 +14,12 @@ const validationSchema = Yup.object().shape({
     .required("Enter Text"),
 });
 
-export const TodoForm = ({ createTodo }) => {
+export const TodoForm = () => {
   const dispatch = useDispatch();
 
   const submitForm = (value, actions) => {
-    dispatch(addToDo({ text: value.text, id: nanoid(), createAt: Date.now() }));
+    dispatch(addTodo({ text: value.text, id: nanoid(), createAt: Date.now() }));
 
-    createTodo(value.text);
     actions.resetForm();
   };
 
