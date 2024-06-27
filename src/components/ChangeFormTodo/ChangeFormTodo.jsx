@@ -1,13 +1,15 @@
-import { useDispatch, useSelector } from "react-redux";
-import { updateTodo, setCurrentTodo } from "reduxStore/todoSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {setCurrentTodo} from "reduxStore/todoSlice";
+import {updateTodo} from "reduxStore/operations";
+import {selectCurrentTodo} from "reduxStore/selectors";
 
 export const ChangeFormTodo = () => {
   const dispatch = useDispatch();
-  const currentTodo = useSelector((state) => state.todos.currentTodo);
+  const currentTodo = useSelector(selectCurrentTodo);
   const handleSubmit = (event) => {
     event.preventDefault();
-    const { value } = event.target.elements.todoUpdate;
-    dispatch(updateTodo(value));
+    const {value} = event.target.elements.todoUpdate;
+    dispatch(updateTodo({...currentTodo, text: value}));
   };
 
   return (
