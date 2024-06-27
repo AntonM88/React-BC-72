@@ -18,3 +18,28 @@ export const fetchTodos = createAsyncThunk(
     }
   }
 );
+
+export const addTodo = createAsyncThunk(
+  "todos/addTodo",
+  async (todo, thunkAPI) => {
+    try {
+      const { data } = await instance.post("/todos", todo);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const deleteTodo = createAsyncThunk(
+  "todos/deleteTodo",
+  async (id, thunkAPI) => {
+    try {
+      const { data } = await instance.delete(`/todos/${id}`);
+      console.log(data);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

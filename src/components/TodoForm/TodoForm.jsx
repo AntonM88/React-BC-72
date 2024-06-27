@@ -3,8 +3,7 @@ import * as Yup from "yup";
 import s from "./TodoForm.module.css";
 import { nanoid } from "nanoid/non-secure";
 import { useDispatch } from "react-redux";
-import { addTodo } from "reduxStore/todoSlice";
-import { act } from "react";
+import { addTodo } from "reduxStore/operations";
 
 const initialValues = { text: "" };
 
