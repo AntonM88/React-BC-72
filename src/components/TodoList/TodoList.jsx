@@ -1,7 +1,8 @@
 import { formatDateToNow } from "helpers/formatDate";
 import s from "./TodoList.module.css";
 import { useDispatch } from "react-redux";
-import { deleteTodo, setCurrentTodo } from "reduxStore/todoSlice";
+import { setCurrentTodo } from "reduxStore/todoSlice";
+import { deleteTodo } from "reduxStore/operations";
 
 export const TodoList = ({ todos }) => {
   const dispatch = useDispatch();
