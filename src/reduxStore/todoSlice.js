@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { fetchTodos, addTodo, deleteTodo } from "./operations";
+import {createSlice} from "@reduxjs/toolkit";
+import {fetchTodos, addTodo, deleteTodo, updateTodo} from "./operations";
 const initialState = {
   items: [],
   currentTodo: null,
@@ -11,20 +11,6 @@ const todoSlice = createSlice({
   name: "todos",
   initialState,
   reducers: {
-    addTodo: (state, action) => {
-      state.items.push(action.payload);
-    },
-    deleteTodo: (state, action) => {
-      state.items = state.items.filter((item) => item.id !== action.payload);
-    },
-    updateTodo: (state, action) => {
-      state.items = state.items.map((item) =>
-        item.id === state.currentTodo.id
-          ? { ...state.currentTodo, text: action.payload }
-          : item
-      );
-      state.currentTodo = null;
-    },
     setCurrentTodo: (state, action) => {
       state.currentTodo = action.payload;
     },
@@ -38,10 +24,15 @@ const todoSlice = createSlice({
         state.items.push(action.payload);
       })
       .addCase(deleteTodo.fulfilled, (state, action) => {
-        state.items = state.items.filter(
-          (item) => item.id !== action.payload.id
-        );
+        state.items = state.items.filter((item) => item.id !== action.payload.id);
       })
+      .addCase(updateTodo.fulfilled, (state, action) => {
+        state.items = state.items.map((item) =>
+          item.id === state.currentTodo.id ? {...action.payload} : item
+        );
+        state.currentTodo = null;
+      })
+
       .addMatcher(
         (action) => action.type.endsWith("pending"),
         (state) => {
@@ -64,5 +55,5 @@ const todoSlice = createSlice({
       );
   },
 });
-export const { updateTodo, setCurrentTodo } = todoSlice.actions;
+export const {setCurrentTodo} = todoSlice.actions;
 export const toDoReducer = todoSlice.reducer;

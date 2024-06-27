@@ -1,7 +1,7 @@
-import { TodoForm, TodoList, Filter, Loader } from "components";
-import { ChangeFormTodo, Heading } from "components";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {TodoForm, TodoList, Filter, Loader} from "components";
+import {ChangeFormTodo, Heading} from "components";
+import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import {
   selectCurrentTodo,
   selectFilter,
@@ -9,7 +9,7 @@ import {
   selectIsError,
   selectIsLoading,
 } from "reduxStore/selectors";
-import { fetchTodos } from "../../reduxStore/operations";
+import {fetchTodos} from "../../reduxStore/operations";
 
 const Todos = () => {
   const currentTodo = useSelector(selectCurrentTodo);
@@ -30,16 +30,10 @@ const Todos = () => {
 
   return (
     <div>
-      {currentTodo ? (
-        <ChangeFormTodo currentTodo={currentTodo} />
-      ) : (
-        <TodoForm />
-      )}
+      {currentTodo ? <ChangeFormTodo currentTodo={currentTodo} /> : <TodoForm />}
       {todos.length > 0 && <Filter />}
-      {todos.length > 0 && <TodoList todos={filteredTodos} />}
-      {!todos.length && !isLoading && !isError && (
-        <Heading title={"All todo completed!"} />
-      )}
+      {todos.length > 0 && !isError && <TodoList todos={filteredTodos} />}
+      {!todos.length && !isLoading && !isError && <Heading title={"All todo completed!"} />}
       {filteredTodos.length === 0 && todos.length !== 0 && (
         <Heading title={`Not find todo width ${filter}`} />
       )}
