@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { fetchTodos } from "./operations";
 const initialState = {
   items: [],
   currentTodo: null,
@@ -25,6 +26,11 @@ const todoSlice = createSlice({
     setCurrentTodo: (state, action) => {
       state.currentTodo = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchTodos.fulfilled, (state, action) => {
+      state.items = action.payload;
+    });
   },
 });
 export const { addTodo, deleteTodo, updateTodo, setCurrentTodo } =

@@ -1,16 +1,24 @@
 import { TodoForm, TodoList, Filter } from "components";
 import { ChangeFormTodo, Heading } from "components";
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   selectCurrentTodo,
   selectFilter,
   selectTodos,
 } from "reduxStore/selectors";
+import { fetchTodos } from "../../reduxStore/operations";
 
 const Todos = () => {
   const currentTodo = useSelector(selectCurrentTodo);
   const todos = useSelector(selectTodos);
   const filter = useSelector(selectFilter);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchTodos());
+  }, [dispatch]);
 
   const filteredTodos = todos.filter((todo) =>
     todo.text.toLowerCase().includes(filter.toLowerCase())
