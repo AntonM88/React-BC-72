@@ -1,6 +1,7 @@
 import { toDoReducer } from "./todoSlice";
 import { filterReducer } from "./filterSlice";
 import { configureStore } from "@reduxjs/toolkit";
+import { currencyReducer } from "./currencySlice";
 // import {
 //   persistStore,
 //   persistReducer,
@@ -25,6 +26,7 @@ export const store = configureStore({
   reducer: {
     todos: toDoReducer,
     filter: filterReducer,
+    currency: currencyReducer,
   },
   // middleware: (getDefaultMiddleware) =>
   //   getDefaultMiddleware({
