@@ -1,7 +1,7 @@
-import { toDoReducer } from "./todoSlice";
-import { filterReducer } from "./filterSlice";
 import { configureStore } from "@reduxjs/toolkit";
-import { currencyReducer } from "./currencySlice";
+import { toDoReducer } from "./todo/todoSlice";
+import { filterReducer } from "./filter/filterSlice";
+import { currencyReducer } from "./currency/currencySlice";
 // import {
 //   persistStore,
 //   persistReducer,

@@ -1,5 +1,5 @@
-import {createSlice} from "@reduxjs/toolkit";
-import {fetchTodos, addTodo, deleteTodo, updateTodo} from "./operations";
+import { createSlice } from "@reduxjs/toolkit";
+import { fetchTodos, addTodo, deleteTodo, updateTodo } from "./operations";
 const initialState = {
   items: [],
   currentTodo: null,
@@ -24,11 +24,13 @@ const todoSlice = createSlice({
         state.items.push(action.payload);
       })
       .addCase(deleteTodo.fulfilled, (state, action) => {
-        state.items = state.items.filter((item) => item.id !== action.payload.id);
+        state.items = state.items.filter(
+          (item) => item.id !== action.payload.id
+        );
       })
       .addCase(updateTodo.fulfilled, (state, action) => {
         state.items = state.items.map((item) =>
-          item.id === state.currentTodo.id ? {...action.payload} : item
+          item.id === state.currentTodo.id ? { ...action.payload } : item
         );
         state.currentTodo = null;
       })
@@ -55,5 +57,5 @@ const todoSlice = createSlice({
       );
   },
 });
-export const {setCurrentTodo} = todoSlice.actions;
+export const { setCurrentTodo } = todoSlice.actions;
 export const toDoReducer = todoSlice.reducer;

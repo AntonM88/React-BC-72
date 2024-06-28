@@ -2,7 +2,9 @@ import { Routes, Route } from "react-router-dom";
 import { Navigation } from "./components";
 import { Suspense, useEffect } from "react";
 import { easyLazy } from "helpers/easyLazy";
-import { getUserInfo } from "./service/opencagedataApi";
+import { fetchBaseCurrency } from "./reduxStore/currency/operations";
+import { useDispatch } from "react-redux";
+import { setBaseCurrency } from "./reduxStore/currency/currencySlice";
 
 const Home = easyLazy("Home");
 const Photos = easyLazy("Photos");
@@ -14,6 +16,7 @@ const SearchCountry = easyLazy("SearchCountry");
 const CountryInfo = easyLazy("CountryInfo");
 
 function App() {
+  const dispatch = useDispatch();
   useEffect(() => {
     const options = {
       enableHighAccuracy: true,
@@ -22,22 +25,15 @@ function App() {
     };
 
     function success(pos) {
-      const crd = pos.coords;
-
-      getUserInfo(pos.coords);
-
-      console.log("Your current position is:");
-      console.log(`Latitude : ${crd.latitude}`);
-      console.log(`Longitude: ${crd.longitude}`);
-      console.log(`More or less ${crd.accuracy} meters.`);
+      dispatch(fetchBaseCurrency(pos.coords));
     }
 
-    function error(err) {
-      console.warn(`ERROR(${err.code}): ${err.message}`);
+    function error() {
+      dispatch(setBaseCurrency("USD"));
     }
 
     navigator.geolocation.getCurrentPosition(success, error, options);
-  }, []);
+  }, [dispatch]);
   return (
     <>
       <Navigation />

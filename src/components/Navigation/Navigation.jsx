@@ -2,12 +2,15 @@ import { NavLink } from "react-router-dom";
 import { ToggleTheme } from "components";
 import s from "./Navigation.module.css";
 import clsx from "clsx";
+import { useSelector } from "react-redux";
+import { selectBaseCurrency } from "reduxStore/currency/selector";
 
 const buildLinkClass = ({ isActive }) => {
   return clsx(s.link, isActive && s.active);
 };
 
 export const Navigation = () => {
+  const baseCurrency = useSelector(selectBaseCurrency);
   return (
     <header className={s.header}>
       <nav>
@@ -49,7 +52,7 @@ export const Navigation = () => {
           </li>
         </ul>
       </nav>
-
+      {baseCurrency && <p>Your base currency: {baseCurrency}</p>}
       <ToggleTheme />
     </header>
   );
