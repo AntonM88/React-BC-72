@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { fetchBaseCurrency } from "./operations";
 
 const currencySlice = createSlice({
   name: "currency",
@@ -8,6 +9,10 @@ const currencySlice = createSlice({
       state.baseCurrency = action.payload;
     },
   },
+  extraReducers: (builder) =>
+    builder.addCase(fetchBaseCurrency.fulfilled, (state, action) => {
+      state.baseCurrency = action.payload;
+    }),
 });
 
 export const currencyReducer = currencySlice.reducer;
