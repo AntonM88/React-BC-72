@@ -1,10 +1,11 @@
-import { Routes, Route } from "react-router-dom";
-import { Navigation } from "./components";
-import { Suspense, useEffect } from "react";
-import { easyLazy } from "helpers/easyLazy";
-import { fetchBaseCurrency } from "./reduxStore/currency/operations";
-import { useDispatch } from "react-redux";
-import { setBaseCurrency } from "./reduxStore/currency/currencySlice";
+import {Routes, Route} from "react-router-dom";
+import {Navigation} from "./components";
+import {Suspense, useEffect} from "react";
+import {easyLazy} from "helpers/easyLazy";
+import {fetchBaseCurrency} from "./reduxStore/currency/operations";
+import {useDispatch} from "react-redux";
+import {setBaseCurrency} from "./reduxStore/currency/currencySlice";
+import {refreshUserThunk} from "./reduxStore/auth/operation";
 
 const LoginPage = easyLazy("LoginPage");
 const RegisterPage = easyLazy("RegisterPage");
@@ -20,6 +21,7 @@ const CountryInfo = easyLazy("CountryInfo");
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(refreshUserThunk());
     const options = {
       enableHighAccuracy: true,
       timeout: 5000,
