@@ -20,3 +20,6 @@ export * from "./CountriesList/CountriesList.jsx";
 export * from "./CountryDetails/CountryDetails.jsx";
 export * from "./CountryForm/CountryForm.jsx";
 export * from "./GoBackBtn/GoBackBtn.jsx";
+export * from "./UserMenu/UserMenu.jsx";
+export * from "./AuthNav/AuthNav.jsx";
+export * from "./CustomNavLink/CustomNavLink.jsx";

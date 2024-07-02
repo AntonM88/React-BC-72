@@ -1,67 +1,25 @@
-import { NavLink } from "react-router-dom";
-import { ToggleTheme } from "components";
+import { ToggleTheme, UserMenu, AuthNav, CustomNavLink } from "components";
 import s from "./Navigation.module.css";
-import clsx from "clsx";
 import { useSelector } from "react-redux";
 import { selectBaseCurrency } from "reduxStore/currency/selector";
-
-const buildLinkClass = ({ isActive }) => {
-  return clsx(s.link, isActive && s.active);
-};
+import { selectIsLoggedIn, selectUser } from "reduxStore/auth/selector";
 
 export const Navigation = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const baseCurrency = useSelector(selectBaseCurrency);
+  const user = useSelector(selectUser);
+
   return (
     <header className={s.header}>
       <nav>
         <ul className={s.list}>
           <li>
-            <NavLink to="/" className={buildLinkClass}>
-              Home
-            </NavLink>
+            <CustomNavLink path="/">Home</CustomNavLink>
           </li>
-          <li>
-            <NavLink to="/login" className={buildLinkClass}>
-              Login
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/register" className={buildLinkClass}>
-              Register
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/photos" className={buildLinkClass}>
-              Photos
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/todos" className={buildLinkClass}>
-              Todos
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/points" className={buildLinkClass}>
-              Points
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/props" className={buildLinkClass}>
-              Props
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/countries" className={buildLinkClass}>
-              Countries
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/searchCountries" className={buildLinkClass}>
-              Search countries
-            </NavLink>
-          </li>
+          {isLoggedIn ? <UserMenu /> : <AuthNav />}
         </ul>
       </nav>
+      {user && <p>Welcome {user.name}</p>}
       {baseCurrency && <p>Your base currency: {baseCurrency}</p>}
       <ToggleTheme />
     </header>

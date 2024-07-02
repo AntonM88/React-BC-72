@@ -7,17 +7,3 @@
   justify-content: center;
   gap: 10px;
 }
-
-.link {
-  padding: 10px;
-  border-radius: 16px;
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: var(--font-medium);
-  color: var(--color-light);
-}
-
-.active {
-  color: var(--color-white);
-  background-color: var(--color-accent);
-}
