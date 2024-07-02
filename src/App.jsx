@@ -6,6 +6,8 @@ import { fetchBaseCurrency } from "./reduxStore/currency/operations";
 import { useDispatch } from "react-redux";
 import { setBaseCurrency } from "./reduxStore/currency/currencySlice";
 
+const LoginPage = easyLazy("LoginPage");
+const RegisterPage = easyLazy("RegisterPage");
 const Home = easyLazy("Home");
 const Photos = easyLazy("Photos");
 const Todos = easyLazy("Todos");
@@ -40,6 +42,8 @@ function App() {
       <Suspense fallback={null}>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
           <Route path="/photos" element={<Photos />} />
           <Route path="/todos" element={<Todos />} />
           <Route path="/points" element={<Points />} />
