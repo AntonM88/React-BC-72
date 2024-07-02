@@ -21,6 +21,16 @@ export const Navigation = () => {
             </NavLink>
           </li>
           <li>
+            <NavLink to="/login" className={buildLinkClass}>
+              Login
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/register" className={buildLinkClass}>
+              Register
+            </NavLink>
+          </li>
+          <li>
             <NavLink to="/photos" className={buildLinkClass}>
               Photos
             </NavLink>

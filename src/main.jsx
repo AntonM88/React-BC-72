@@ -2,8 +2,8 @@ import React from "react";
 import { Provider } from "react-redux";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
-// import { PersistGate } from "redux-persist/integration/react";
-import { store } from "./reduxStore/store.js";
+import { PersistGate } from "redux-persist/integration/react";
+import { store, persistor } from "./reduxStore/store.js";
 import App from "./App.jsx";
 import "modern-normalize/modern-normalize.css";
 import "./index.css";
@@ -14,9 +14,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
       <ThemeProvider>
         <Provider store={store}>
-          {/* <PersistGate loading={null} persistor={persistor}> */}
-          <App />
-          {/* </PersistGate> */}
+          <PersistGate loading={null} persistor={persistor}>
+            <App />
+          </PersistGate>
         </Provider>
       </ThemeProvider>
     </BrowserRouter>
