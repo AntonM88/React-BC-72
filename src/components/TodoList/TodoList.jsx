@@ -1,10 +1,9 @@
-import { formatDateToNow } from "helpers/formatDate";
 import s from "./TodoList.module.css";
-import { useDispatch } from "react-redux";
-import { setCurrentTodo } from "reduxStore/todo/todoSlice";
-import { deleteTodo } from "reduxStore/todo/operations";
+import {useDispatch} from "react-redux";
+import {setCurrentTodo} from "reduxStore/todo/todoSlice";
+import {deleteTodo} from "reduxStore/todo/operations";
 
-export const TodoList = ({ todos }) => {
+export const TodoList = ({todos}) => {
   const dispatch = useDispatch();
 
   return (
@@ -14,17 +13,10 @@ export const TodoList = ({ todos }) => {
           <p>
             #{index + 1}_{todo.text}
           </p>
-          <p>was created {formatDateToNow(todo.createAt)}</p>
-          <button
-            className={s.btn_del}
-            onClick={() => dispatch(deleteTodo(todo.id))}
-          >
+          <button className={s.btn_del} onClick={() => dispatch(deleteTodo(todo.id))}>
             Delete
           </button>
-          <button
-            className={s.btn_change}
-            onClick={() => dispatch(setCurrentTodo(todo))}
-          >
+          <button className={s.btn_change} onClick={() => dispatch(setCurrentTodo(todo))}>
             Change
           </button>
         </li>
