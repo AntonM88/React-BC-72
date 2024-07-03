@@ -6,6 +6,7 @@
   display: flex;
   justify-content: center;
   gap: 10px;
+  margin-bottom: 10px;
 }
 
 .btn {
@@ -14,4 +15,10 @@
   background-color: blue;
   color: white;
   text-transform: uppercase;
+  display: block;
+  margin-left: auto;
+  margin-bottom: 10px;
+}
+.text {
+  text-align: right;
 }

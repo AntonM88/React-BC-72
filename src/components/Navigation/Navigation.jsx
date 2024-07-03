@@ -1,9 +1,9 @@
-import {ToggleTheme, UserMenu, AuthNav, CustomNavLink} from "components";
+import { ToggleTheme, UserMenu, AuthNav, CustomNavLink } from "components";
 import s from "./Navigation.module.css";
-import {useDispatch, useSelector} from "react-redux";
-import {selectBaseCurrency} from "reduxStore/currency/selector";
-import {selectIsLoggedIn, selectUser} from "reduxStore/auth/selector";
-import {logOutThunk} from "../../reduxStore/auth/operation";
+import { useDispatch, useSelector } from "react-redux";
+import { selectBaseCurrency } from "reduxStore/currency/selector";
+import { selectIsLoggedIn, selectUser } from "reduxStore/auth/selector";
+import { logOutThunk } from "../../reduxStore/auth/operation";
 
 export const Navigation = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -23,13 +23,15 @@ export const Navigation = () => {
       </nav>
       {user && (
         <>
-          <p>Welcome {user.name}</p>
+          <p className={s.text}>Welcome {user.name}</p>
           <button className={s.btn} onClick={() => dispatch(logOutThunk())}>
             Logout
           </button>
         </>
       )}
-      {baseCurrency && <p>Your base currency: {baseCurrency}</p>}
+      {baseCurrency && (
+        <p className={s.text}>Your base currency: {baseCurrency}</p>
+      )}
       <ToggleTheme />
     </header>
   );
