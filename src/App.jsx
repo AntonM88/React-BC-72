@@ -1,11 +1,17 @@
 import { Routes, Route } from "react-router-dom";
-import { Navigation, PrivateRoute, RestrictedRoute } from "./components";
+import {
+  Loader,
+  Navigation,
+  PrivateRoute,
+  RestrictedRoute,
+} from "./components";
 import { Suspense, useEffect } from "react";
 import { easyLazy } from "helpers/easyLazy";
 import { fetchBaseCurrency } from "./reduxStore/currency/operations";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setBaseCurrency } from "./reduxStore/currency/currencySlice";
 import { refreshUserThunk } from "./reduxStore/auth/operation";
+import { selectIsRefreshing } from "./reduxStore/auth/selector";
 
 const LoginPage = easyLazy("LoginPage");
 const RegisterPage = easyLazy("RegisterPage");
@@ -20,6 +26,7 @@ const CountryInfo = easyLazy("CountryInfo");
 
 function App() {
   const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
   useEffect(() => {
     dispatch(refreshUserThunk());
     const options = {
@@ -38,7 +45,9 @@ function App() {
 
     navigator.geolocation.getCurrentPosition(success, error, options);
   }, [dispatch]);
-  return (
+  return isRefreshing ? (
+    <Loader />
+  ) : (
     <>
       <Navigation />
       <Suspense fallback={null}>
