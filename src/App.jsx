@@ -1,11 +1,11 @@
-import {Routes, Route} from "react-router-dom";
-import {Navigation} from "./components";
-import {Suspense, useEffect} from "react";
-import {easyLazy} from "helpers/easyLazy";
-import {fetchBaseCurrency} from "./reduxStore/currency/operations";
-import {useDispatch} from "react-redux";
-import {setBaseCurrency} from "./reduxStore/currency/currencySlice";
-import {refreshUserThunk} from "./reduxStore/auth/operation";
+import { Routes, Route } from "react-router-dom";
+import { Navigation, PrivateRoute, RestrictedRoute } from "./components";
+import { Suspense, useEffect } from "react";
+import { easyLazy } from "helpers/easyLazy";
+import { fetchBaseCurrency } from "./reduxStore/currency/operations";
+import { useDispatch } from "react-redux";
+import { setBaseCurrency } from "./reduxStore/currency/currencySlice";
+import { refreshUserThunk } from "./reduxStore/auth/operation";
 
 const LoginPage = easyLazy("LoginPage");
 const RegisterPage = easyLazy("RegisterPage");
@@ -44,15 +44,59 @@ function App() {
       <Suspense fallback={null}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/photos" element={<Photos />} />
-          <Route path="/todos" element={<Todos />} />
-          <Route path="/points" element={<Points />} />
-          <Route path="/props" element={<Props />} />
-          <Route path="/countries" element={<Countries />} />
-          <Route path="/SearchCountries" element={<SearchCountry />} />
-          <Route path="/countries/:countryId" element={<CountryInfo />} />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute component={<LoginPage />} redirectTo="/todos" />
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute
+                component={<RegisterPage />}
+                redirectTo="/todos"
+              />
+            }
+          />
+          <Route
+            path="/photos"
+            element={
+              <PrivateRoute component={<Photos />} redirectTo="/login" />
+            }
+          />
+          <Route
+            path="/todos"
+            element={<PrivateRoute component={<Todos />} redirectTo="/login" />}
+          />
+          <Route
+            path="/points"
+            element={
+              <PrivateRoute component={<Points />} redirectTo="/login" />
+            }
+          />
+          <Route
+            path="/props"
+            element={<PrivateRoute component={<Props />} redirectTo="/login" />}
+          />
+          <Route
+            path="/countries"
+            element={
+              <PrivateRoute component={<Countries />} redirectTo="/login" />
+            }
+          />
+          <Route
+            path="/SearchCountries"
+            element={
+              <PrivateRoute component={<SearchCountry />} redirectTo="/login" />
+            }
+          />
+          <Route
+            path="/countries/:countryId"
+            element={
+              <PrivateRoute component={<CountryInfo />} redirectTo="/login" />
+            }
+          />
         </Routes>
       </Suspense>
     </>
