@@ -23,3 +23,5 @@ export * from "./GoBackBtn/GoBackBtn.jsx";
 export * from "./UserMenu/UserMenu.jsx";
 export * from "./AuthNav/AuthNav.jsx";
 export * from "./CustomNavLink/CustomNavLink.jsx";
+export * from "./RestrictedRoute/RestrictedRoute.jsx";
+export * from "./PrivateRoute/PrivateRoute.jsx";
